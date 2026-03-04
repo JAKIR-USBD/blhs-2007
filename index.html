@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EID Grand Celebration</title>
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* Deep Night Sky */
+body {
+    background: radial-gradient(circle at 50% 120%, #1a1a40 0%, #0b132b 40%, #020409 100%);
+    animation: skyZoom 20s ease-in-out infinite alternate;
+}
+@keyframes skyZoom {
+    from { background-size: 100% 100%; }
+    to { background-size: 120% 120%; }
+}
+
+/* Canvas */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    background-color: midnight-blue;
+}
+
+/* Multicolor Stars */
+.star {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+    z-index: 0;
+}
+@keyframes twinkle {
+    from { opacity: .3; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1.6); }
+}
+
+/* Cumulus Clouds */
+.cloud {
+    position: fixed;
+    background: rgba(230,230,230,0.85);
+    border-radius: 50%;
+    filter: blur(2px);
+    z-index: 0;
+  background-color: gray;
+}
+.cloud::before,
+.cloud::after {
+    content: "";
+    position: absolute;
+    background: rgba(230,230,230,0.85);
+    border-radius: 50%;
+}
+
+/* Cloud Animations */
+.cloud1 { width:180px;height:90px;top:15vh;left:-300px;animation:move1 70s linear infinite;}
+.cloud1::before{width:110px;height:110px;top:-40px;left:30px;}
+.cloud1::after{width:130px;height:130px;top:-50px;left:80px;}
+@keyframes move1 {from{left:-350px;}to{left:120%;}}
+
+.cloud2 { width:140px;height:70px;top:28vh;left:-250px;animation:move2 55s linear infinite;}
+.cloud2::before{width:90px;height:90px;top:-35px;left:25px;}
+.cloud2::after{width:100px;height:100px;top:-45px;left:70px;}
+@keyframes move2 {from{left:-300px;}to{left:120%;}}
+
+.cloud3 { width:220px;height:110px;top:20vh;left:-400px;animation:move3 95s linear infinite;}
+.cloud3::before{width:140px;height:140px;top:-60px;left:40px;}
+.cloud3::after{width:160px;height:160px;top:-70px;left:100px;}
+@keyframes move3 {from{left:-450px;}to{left:120%;}}
+
+/* Moon */
+.moon {
+    position: fixed;
+    top: 10vh;
+    right: 10vw;
+    width: 18vw;
+    height: 18vw;
+    max-width: 130px;
+    max-height: 130px;
+    background: black;
+    border-radius: 50%;
+    box-shadow: -25px 0 0 0 #F8F0E3,0 0 25px rgba(255,255,220,0.4);
+    z-index:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  
+}
+  
+
+.moon span{
+    color: aqua;
+  font-style: italic;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow:0 0 10px yellow,0 0 20px orange;
+}
+
+/* Message */
+.message {
+    position: fixed;
+    bottom: 8vh;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: clamp(18px, 5vw, 28px);
+    font-weight: bold;
+    line-height: 1.6;
+    letter-spacing: 1px;
+    z-index: 2;
+  color: fuchsia;
+  font-style: italic;
+}
+
+.letter {
+    opacity: 0;
+    display: inline-block;
+}
+.show { opacity: 1; }
+
+.glow-eid {
+    font-size: clamp(30px, 8vw, 50px);
+    color: blue !important;
+    text-shadow:0 0 10px black,0 0 30px fuchsia,0 0 50px purple;
+}
+
+.glow-blhs {
+    font-size: clamp(32px, 10vw, 55px);
+    color: lime !important;
+    text-shadow:0 0 10px cyan,0 0 25px fuchsia,0 0 40px purple;
+    animation: pulseGlow 3s ease-in-out infinite;
+}
+@keyframes pulseGlow {
+    0% { text-shadow:0 0 8px cyan; }
+    50% { text-shadow:0 0 30px #00ffff,0 0 60px cyan; }
+    100% { text-shadow:0 0 8px cyan; }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="fireworks"></canvas>
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+<div class="cloud cloud3"></div>
+<div class="moon"><span>BLHS 2007</span></div>
+<div class="message" id="message"></div>
+
+<script>
+
+/* Stars */
+const starColors=["white","red","pink","yellow","lime","cyan","orange"];
+for(let i=0;i<150;i++){
+    const star=document.createElement("div");
+    star.className="star";
+    star.style.top=Math.random()*100+"%";
+    star.style.left=Math.random()*100+"%";
+    star.style.background=starColors[Math.floor(Math.random()*starColors.length)];
+    star.style.animationDuration=(Math.random()*3+1)+"s";
+    document.body.appendChild(star);
+}
+
+/* Fireworks */
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+
+function resize(){
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerHeight;
+}
+resize();
+window.addEventListener("resize",resize);
+
+let particles=[];
+function random(min,max){ return Math.random()*(max-min)+min; }
+
+function createFirework(x=null,y=null,count=70){
+    x = x || random(50,canvas.width-50);
+    y = y || random(50,canvas.height/2);
+
+    const colors=["lime","fuchsia","red","blue","pink","cyan","orange","gold"];
+    const color=colors[Math.floor(Math.random()*colors.length)];
+
+    for(let i=0;i<count;i++){
+        particles.push({
+            x,y,
+            angle:random(0,Math.PI*2),
+            speed:random(2,5),
+            alpha:1,
+            color
+        });
+    }
+}
+
+/* More fireworks */
+setInterval(()=>createFirework(),1000);
+
+/* Grand explosion every 12s */
+setInterval(()=>{
+    createFirework(canvas.width/2,canvas.height/3,200);
+},12000);
+
+function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach((p,i)=>{
+        p.x+=Math.cos(p.angle)*p.speed;
+        p.y+=Math.sin(p.angle)*p.speed;
+        p.alpha-=0.015;
+        if(p.alpha<=0) particles.splice(i,1);
+        ctx.globalAlpha=p.alpha;
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,2,0,Math.PI*2);
+        ctx.fillStyle=p.color;
+        ctx.fill();
+    });
+    ctx.globalAlpha=1;
+    requestAnimationFrame(animate);
+}
+animate();
+
+/* Message Animation */
+const lines=[
+"🤲FROM SUHOOR TO EID PRAYER — EVERY MOMENT MATTERED!💕",
+"ON BEHALF OF",
+"🏫BAYEZID LINE HIGH SCHOOL 2007🏫",
+"🌙EID MUBARAK🌙"
+];
+
+const box=document.getElementById("message");
+
+async function animateLine(text){
+    box.innerHTML="";
+    for(let char of text){
+        const span=document.createElement("span");
+        span.className="letter";
+        span.textContent=char===" " ? "\u00A0" : char;
+        box.appendChild(span);
+    }
+
+    const letters=box.querySelectorAll(".letter");
+
+    if(text.includes("🌙EID MUBARAK🌙")) box.className="message glow-eid";
+    else if(text==="🏫BAYEZID LINE HIGH SCHOOL 2007🏫") box.className="message glow-blhs";
+    else box.className="message";
+
+    for(let i=0;i<letters.length;i++){
+        letters[i].classList.add("show");
+        await new Promise(r=>setTimeout(r,50));
+    }
+
+    await new Promise(r=>setTimeout(r,3000));
+}
+
+async function loop(){
+    let i=0;
+    while(true){
+        await animateLine(lines[i%lines.length]);
+        i++;
+    }
+}
+loop();
+
+</script>
+</body>
+</html>
