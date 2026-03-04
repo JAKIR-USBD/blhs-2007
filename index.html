@@ -31,6 +31,17 @@ canvas {
     left: 0;
     z-index: 0;
 }
+  /* School Image */
+.school-image {
+    position: relative;
+    width: 90%;
+    max-width: 200px;
+    margin: 80px auto 20px auto;
+    display: block;
+    border-radius: 25px;
+    box-shadow: 0 0 25px rgba(255,255,255,0.2);
+    z-index: 2;
+}
 
 /* Stars */
 .star {
@@ -107,19 +118,18 @@ canvas {
 .message {
     position: fixed;
     bottom: 6vh;
-    width: 94%;
+    width: 95%;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    font-size: clamp(16px, 4.5vw, 26px);
+    font-size: clamp(20px, 6vw, 40px);
     font-weight: bold;
-    line-height: 1.4;
-    letter-spacing: 0.5px;
+    line-height: 1.3;
     z-index: 2;
-    color: fuchsia;
+    color: aqua;
     font-style: italic;
-    word-break: keep-all;
-    overflow-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .letter {
@@ -146,11 +156,10 @@ canvas {
     100% { text-shadow:0 0 8px cyan; }
 }
 
-/* Extra Mobile Optimization */
+/* Mobile Optimization */
 @media (max-width:480px){
-    .message{
-        bottom: 5vh;
-        line-height:1.3;
+    .school-image {
+        margin-top: 60px;
     }
 }
 </style>
@@ -163,6 +172,8 @@ canvas {
 <div class="cloud cloud2"></div>
 <div class="cloud cloud3"></div>
 <div class="moon"><span>BLHS 2007</span></div>
+  <!-- ✅ Your School Image -->
+<img src="https://imgur.com/S3XIdkR.png" class="school-image" alt="BAYEZID LINE HIGH SCHOOL">
 <div class="message" id="message"></div>
 
 <script>
