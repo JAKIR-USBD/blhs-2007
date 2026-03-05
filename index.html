@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EID Grand Celebration</title>
 
 <style>
@@ -30,20 +30,10 @@ canvas {
     top: 0;
     left: 0;
     z-index: 0;
-}
-  /* School Image */
-.school-image {
-    position: relative;
-    width: 90%;
-    max-width: 200px;
-    margin: 80px auto 20px auto;
-    display: block;
-    border-radius: 25px;
-    box-shadow: 0 0 25px rgba(255,255,255,0.2);
-    z-index: 2;
+    background-color: midnight-blue;
 }
 
-/* Stars */
+/* Multicolor Stars */
 .star {
     position: fixed;
     width: 3px;
@@ -57,15 +47,17 @@ canvas {
     to { opacity: 1; transform: scale(1.6); }
 }
 
-/* Clouds */
+/* Cumulus Clouds */
 .cloud {
     position: fixed;
     background: rgba(230,230,230,0.85);
     border-radius: 50%;
     filter: blur(2px);
     z-index: 0;
+  background-color: gray;
 }
-.cloud::before, .cloud::after {
+.cloud::before,
+.cloud::after {
     content: "";
     position: absolute;
     background: rgba(230,230,230,0.85);
@@ -73,30 +65,30 @@ canvas {
 }
 
 /* Cloud Animations */
-.cloud1 { width:160px;height:80px;top:15vh;left:-300px;animation:move1 70s linear infinite;}
-.cloud1::before{width:100px;height:100px;top:-35px;left:25px;}
-.cloud1::after{width:120px;height:120px;top:-45px;left:70px;}
+.cloud1 { width:180px;height:90px;top:15vh;left:-300px;animation:move1 70s linear infinite;}
+.cloud1::before{width:110px;height:110px;top:-40px;left:30px;}
+.cloud1::after{width:130px;height:130px;top:-50px;left:80px;}
 @keyframes move1 {from{left:-350px;}to{left:120%;}}
 
-.cloud2 { width:120px;height:60px;top:28vh;left:-250px;animation:move2 55s linear infinite;}
-.cloud2::before{width:80px;height:80px;top:-30px;left:20px;}
-.cloud2::after{width:90px;height:90px;top:-40px;left:60px;}
+.cloud2 { width:140px;height:70px;top:28vh;left:-250px;animation:move2 55s linear infinite;}
+.cloud2::before{width:90px;height:90px;top:-35px;left:25px;}
+.cloud2::after{width:100px;height:100px;top:-45px;left:70px;}
 @keyframes move2 {from{left:-300px;}to{left:120%;}}
 
-.cloud3 { width:180px;height:90px;top:20vh;left:-400px;animation:move3 95s linear infinite;}
-.cloud3::before{width:120px;height:120px;top:-50px;left:30px;}
-.cloud3::after{width:140px;height:140px;top:-60px;left:90px;}
+.cloud3 { width:220px;height:110px;top:20vh;left:-400px;animation:move3 95s linear infinite;}
+.cloud3::before{width:140px;height:140px;top:-60px;left:40px;}
+.cloud3::after{width:160px;height:160px;top:-70px;left:100px;}
 @keyframes move3 {from{left:-450px;}to{left:120%;}}
 
 /* Moon */
 .moon {
     position: fixed;
-    top: 8vh;
-    right: 5vw;
-    width: 22vw;
-    height: 22vw;
-    max-width: 120px;
-    max-height: 120px;
+    top: 10vh;
+    right: 10vw;
+    width: 18vw;
+    height: 18vw;
+    max-width: 130px;
+    max-height: 130px;
     background: black;
     border-radius: 50%;
     box-shadow: -25px 0 0 0 #F8F0E3,0 0 25px rgba(255,255,220,0.4);
@@ -104,32 +96,33 @@ canvas {
     display:flex;
     align-items:center;
     justify-content:center;
+  
 }
+  
 
 .moon span{
-    color: red;
-    font-style: italic;
-    font-size: clamp(10px,3vw,14px);
+    color: aqua;
+  font-style: italic;
+    font-size: 14px;
     font-weight: bold;
-    text-shadow:0 0 10px red,0 0 20px blue;
+    text-shadow:0 0 10px yellow,0 0 20px orange;
 }
 
 /* Message */
 .message {
     position: fixed;
-    bottom: 6vh;
-    width: 75%;
+    bottom: 8vh;
+    width: 90%;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    font-size: clamp(20px, 6vw, 40px);
+    font-size: clamp(18px, 5vw, 28px);
     font-weight: bold;
-    line-height: 1.3;
+    line-height: 1.6;
+    letter-spacing: 1px;
     z-index: 2;
-    color: aqua;
-    font-style: italic;
-    white-space: nowrap;
-    overflow: hidden;
+  color: fuchsia;
+  font-style: italic;
 }
 
 .letter {
@@ -139,27 +132,15 @@ canvas {
 .show { opacity: 1; }
 
 .glow-eid {
-    font-size: clamp(24px, 7vw, 42px);
-    color: fuchsia !important;
+    font-size: clamp(30px, 8vw, 50px);
+    color: blue !important;
     text-shadow:0 0 10px black,0 0 30px fuchsia,0 0 50px purple;
 }
 
 .glow-blhs {
-    font-size: clamp(20px, 8vw, 40px);
+    font-size: clamp(32px, 10vw, 55px);
     color: lime !important;
     text-shadow:0 0 10px cyan,0 0 25px fuchsia,0 0 40px purple;
-    animation: pulseGlow 3s ease-in-out infinite;
-}
-  .glow-quote {
-    font-size: clamp(20px, 8vw, 40px);
-    color: aqua !important;
-    text-shadow:0 0 10px black,0 0 25px black,0 0 40px black;
-    animation: pulseGlow 3s ease-in-out infinite;
-}
-  .glow-behalf {
-    font-size: clamp(20px, 8vw, 40px);
-    color: red !important;
-    text-shadow:0 0 10px black,0 0 25px black,0 0 40px black;
     animation: pulseGlow 3s ease-in-out infinite;
 }
 @keyframes pulseGlow {
@@ -167,81 +148,16 @@ canvas {
     50% { text-shadow:0 0 30px #00ffff,0 0 60px cyan; }
     100% { text-shadow:0 0 8px cyan; }
 }
-
-/* Mobile Optimization */
-@media (max-width:480px){
-    .school-image {
-        margin-top: 60px;
-    }
-}
-  
-  /* Portrait Lock for Mobile */
-#app{
-    width:100vw;
-    height:100vh;
-    overflow:hidden;
-}
-
-@media screen and (orientation:landscape) and (max-width:900px){
-    #app{
-        transform: rotate(90deg);
-        transform-origin: center center;
-        width:100vh;
-        height:100vw;
-        position:absolute;
-        top:50%;
-        left:50%;
-        translate:-50% -50%;
-    }
-}
-  /* Fixed Landscape Frame */
-#landscape-frame{
-    position: fixed;
-    width: 100vw;
-    height: calc(100vw * 9 / 16);
-    max-height: 100vh;
-    max-width: calc(100vh * 16 / 9);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    overflow: hidden;
-}
-  /* Force full screen landscape layout */
-html, body {
-    width:100vw;
-    height:100vh;
-    overflow:hidden;
-}
-
-/* Fix message position */
-.message{
-    position:fixed;
-    bottom:6vh;
-    left:50%;
-    transform:translateX(-50%);
-    width:90%;
-    text-align:center;
-  font-size: 19px;
-}
-
-/* Prevent text breaking */
-.message span{
-    white-space:nowrap;
-}
 </style>
 </head>
 
 <body>
 
-<div id="landscape-frame">
-
 <canvas id="fireworks"></canvas>
 <div class="cloud cloud1"></div>
 <div class="cloud cloud2"></div>
 <div class="cloud cloud3"></div>
-<div class="moon"><span>"BLHS 2007"</span></div>
-  <!-- ✅ Your School Image -->
-<img src="https://imgur.com/S3XIdkR.png" class="school-image" alt="BAYEZID LINE HIGH SCHOOL">
+<div class="moon"><span>BLHS 2007</span></div>
 <div class="message" id="message"></div>
 
 <script>
@@ -290,8 +206,13 @@ function createFirework(x=null,y=null,count=70){
     }
 }
 
+/* More fireworks */
 setInterval(()=>createFirework(),1000);
-setInterval(()=>createFirework(canvas.width/2,canvas.height/3,200),12000);
+
+/* Grand explosion every 12s */
+setInterval(()=>{
+    createFirework(canvas.width/2,canvas.height/3,200);
+},12000);
 
 function animate(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -334,8 +255,6 @@ async function animateLine(text){
 
     if(text.includes("🌙EID MUBARAK🌙")) box.className="message glow-eid";
     else if(text==="🏫BAYEZID LINE HIGH SCHOOL 2007🏫") box.className="message glow-blhs";
-  else if(text==="🤲FROM SUHOOR TO EID PRAYER — EVERY MOMENT MATTERED!💕") box.className="message glow-quote";
-  else if(text==="ON BEHALF OF") box.className="message glow-behalf";
     else box.className="message";
 
     for(let i=0;i<letters.length;i++){
@@ -343,8 +262,7 @@ async function animateLine(text){
         await new Promise(r=>setTimeout(r,50));
     }
 
-    /* Only 1 second before next message */
-    await new Promise(r=>setTimeout(r,1000));
+    await new Promise(r=>setTimeout(r,3000));
 }
 
 async function loop(){
@@ -355,21 +273,7 @@ async function loop(){
     }
 }
 loop();
-  /* Force Landscape on Mobile */
-async function forceLandscape(){
-    try{
-        if(screen.orientation && screen.orientation.lock){
-            await screen.orientation.lock("landscape");
-        }
-    }catch(e){
-        console.log("Orientation lock not supported");
-    }
-}
-
-document.addEventListener("click", forceLandscape);
-document.addEventListener("touchstart", forceLandscape);
 
 </script>
-  </div>
 </body>
 </html>
