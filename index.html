@@ -107,11 +107,11 @@ canvas {
 }
 
 .moon span{
-    color: aqua;
+    color: red;
     font-style: italic;
     font-size: clamp(10px,3vw,14px);
     font-weight: bold;
-    text-shadow:0 0 10px yellow,0 0 20px orange;
+    text-shadow:0 0 10px red,0 0 20px blue;
 }
 
 /* Message */
@@ -140,7 +140,7 @@ canvas {
 
 .glow-eid {
     font-size: clamp(24px, 7vw, 42px);
-    color: blue !important;
+    color: fuchsia !important;
     text-shadow:0 0 10px black,0 0 30px fuchsia,0 0 50px purple;
 }
 
@@ -148,6 +148,18 @@ canvas {
     font-size: clamp(20px, 8vw, 40px);
     color: lime !important;
     text-shadow:0 0 10px cyan,0 0 25px fuchsia,0 0 40px purple;
+    animation: pulseGlow 3s ease-in-out infinite;
+}
+  .glow-quote {
+    font-size: clamp(20px, 8vw, 40px);
+    color: aqua !important;
+    text-shadow:0 0 10px black,0 0 25px black,0 0 40px black;
+    animation: pulseGlow 3s ease-in-out infinite;
+}
+  .glow-behalf {
+    font-size: clamp(20px, 8vw, 40px);
+    color: red !important;
+    text-shadow:0 0 10px black,0 0 25px black,0 0 40px black;
     animation: pulseGlow 3s ease-in-out infinite;
 }
 @keyframes pulseGlow {
@@ -162,16 +174,39 @@ canvas {
         margin-top: 60px;
     }
 }
+  
+  /* Portrait Lock for Mobile */
+#app{
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+}
+
+@media screen and (orientation:landscape) and (max-width:900px){
+    #app{
+        transform: rotate(90deg);
+        transform-origin: center center;
+        width:100vh;
+        height:100vw;
+        position:absolute;
+        top:50%;
+        left:50%;
+        translate:-50% -50%;
+    }
+}
+  
 </style>
 </head>
 
 <body>
 
+<div id="app">
+
 <canvas id="fireworks"></canvas>
 <div class="cloud cloud1"></div>
 <div class="cloud cloud2"></div>
 <div class="cloud cloud3"></div>
-<div class="moon"><span>BLHS 2007</span></div>
+<div class="moon"><span>"BLHS 2007"</span></div>
   <!-- ✅ Your School Image -->
 <img src="https://imgur.com/S3XIdkR.png" class="school-image" alt="BAYEZID LINE HIGH SCHOOL">
 <div class="message" id="message"></div>
@@ -266,6 +301,8 @@ async function animateLine(text){
 
     if(text.includes("🌙EID MUBARAK🌙")) box.className="message glow-eid";
     else if(text==="🏫BAYEZID LINE HIGH SCHOOL 2007🏫") box.className="message glow-blhs";
+  else if(text==="🤲FROM SUHOOR TO EID PRAYER — EVERY MOMENT MATTERED!💕") box.className="message glow-quote";
+  else if(text==="ON BEHALF OF") box.className="message glow-behalf";
     else box.className="message";
 
     for(let i=0;i<letters.length;i++){
