@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>EID Grand Celebration</title>
 
 <style>
@@ -194,13 +194,25 @@ canvas {
         translate:-50% -50%;
     }
 }
+  /* Fixed Landscape Frame */
+#landscape-frame{
+    position: fixed;
+    width: 100vw;
+    height: calc(100vw * 9 / 16);
+    max-height: 100vh;
+    max-width: calc(100vh * 16 / 9);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
   
 </style>
 </head>
 
 <body>
 
-<div id="app">
+<div id="landscape-frame">
 
 <canvas id="fireworks"></canvas>
 <div class="cloud cloud1"></div>
@@ -324,5 +336,6 @@ async function loop(){
 loop();
 
 </script>
+  </div>
 </body>
 </html>
