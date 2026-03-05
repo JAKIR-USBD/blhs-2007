@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>EID Grand Celebration</title>
 
 <style>
@@ -118,7 +118,7 @@ canvas {
 .message {
     position: fixed;
     bottom: 6vh;
-    width: 95%;
+    width: 75%;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -206,7 +206,28 @@ canvas {
     transform: translate(-50%, -50%);
     overflow: hidden;
 }
-  
+  /* Force full screen landscape layout */
+html, body {
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+}
+
+/* Fix message position */
+.message{
+    position:fixed;
+    bottom:6vh;
+    left:50%;
+    transform:translateX(-50%);
+    width:90%;
+    text-align:center;
+  font-size: 19px;
+}
+
+/* Prevent text breaking */
+.message span{
+    white-space:nowrap;
+}
 </style>
 </head>
 
@@ -334,6 +355,19 @@ async function loop(){
     }
 }
 loop();
+  /* Force Landscape on Mobile */
+async function forceLandscape(){
+    try{
+        if(screen.orientation && screen.orientation.lock){
+            await screen.orientation.lock("landscape");
+        }
+    }catch(e){
+        console.log("Orientation lock not supported");
+    }
+}
+
+document.addEventListener("click", forceLandscape);
+document.addEventListener("touchstart", forceLandscape);
 
 </script>
   </div>
