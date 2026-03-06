@@ -105,16 +105,69 @@ canvas {
     display:flex;
     align-items:center;
     justify-content:center;
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.moon-text{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    animation: rotateMoonText 12s linear infinite;
 }
 
 .moon span{
-    color: red;
-    font-style: italic;
-    font-size: clamp(10px,3vw,11px);
-    font-weight: bold;
-    text-shadow:0 0 10px lime,0 0 20px blue;
+    color:red;
+    font-style:italic;
+    font-weight:bold;
+    font-size:clamp(10px,3vw,12px);
+
+    text-shadow:0 0 5px white,0 0 15px cyan,0 0 30px blue;
+
+    animation:pulseGlow 3s ease-in-out infinite alternate;
 }
 
+@keyframes rotateMoonText{
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
+}
+  .moon-light{
+    position: fixed;
+    top: 15vh;
+    right: 6vw;
+    width: 180px;
+    height: 350px;
+
+    background: radial-gradient(circle at top,
+        rgba(255,255,220,0.5),
+        rgba(255,255,220,0.2),
+        transparent 70%);
+
+    transform: rotate(10deg);
+    filter: blur(10px);
+
+    animation: moonLightGlow 4s ease-in-out infinite alternate;
+
+    z-index:0;
+}
+
+@keyframes moonLightGlow{
+    from{
+        opacity:0.3;
+        transform:rotate(10deg) scaleY(0.9);
+    }
+    to{
+        opacity:0.7;
+        transform:rotate(10deg) scaleY(1.1);
+    }
+}
 .message{
     position: fixed;
     bottom: 6vh;
@@ -222,7 +275,12 @@ canvas {
 <div class="cloud cloud1"></div>
 <div class="cloud cloud2"></div>
 <div class="cloud cloud3"></div>
-<div class="moon"><span>"BLHS 2007"</span></div>
+<div class="moon">
+    <div class="moon-text">
+        <span>BLHS 2007</span>
+    </div>
+  <div class="moon-light"></div>
+</div>
   <!-- ✅ Your School Image -->
 <img src="https://imgur.com/S3XIdkR.png" class="school-image" alt="BAYEZID LINE HIGH SCHOOL">
 <div class="message" id="message"></div>
@@ -362,4 +420,3 @@ loop();
 </script>
 </body>
 </html>
-
