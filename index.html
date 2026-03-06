@@ -115,7 +115,6 @@ canvas {
     text-shadow:0 0 10px lime,0 0 20px blue;
 }
 
-/* Message */
 .message {
     position: fixed;
     bottom: 6vh;
@@ -123,30 +122,35 @@ canvas {
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    font-size: clamp(20px, 6vw, 15px);
+    font-size: clamp(14px, 5vw, 22px);
     font-weight: bold;
     line-height: 1.3;
     z-index: 2;
     color: aqua;
     font-style: italic;
-    white-space: nowrap;
-    overflow: hidden;
+
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
-  .message1 {
+
+.message1 {
     position: fixed;
     bottom: 6vh;
-    width: 70%;
+    width: 80%;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    font-size: 15px;
+    font-size: clamp(14px, 4.5vw, 20px);
     font-weight: bold;
     line-height: 1.3;
     z-index: 2;
     color: aqua;
     font-style: italic;
-    white-space: nowrap;
-    overflow: hidden;
+
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
   
 
