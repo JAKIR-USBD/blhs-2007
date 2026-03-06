@@ -120,14 +120,18 @@ canvas {
 }
 
 .moon span{
-    color:red;
-    font-style:italic;
-    font-weight:bold;
-    font-size:clamp(10px,3vw,12px);
+    color: lime;
+    font-style: italic;
+    font-size: clamp(10px,3vw,12px);
+    font-weight: bold;
 
-    text-shadow:0 0 5px white,0 0 15px cyan,0 0 30px blue;
+    text-shadow:
+        0 0 10px cyan,
+        0 0 20px fuchsia,
+        0 0 35px purple,
+        0 0 60px cyan;
 
-    animation:pulseGlow 3s ease-in-out infinite alternate;
+    animation: pulseGlow 2s ease-in-out infinite alternate;
 }
 
 @keyframes rotateMoonText{
@@ -277,7 +281,7 @@ canvas {
 <div class="cloud cloud3"></div>
 <div class="moon">
     <div class="moon-text">
-        <span>BLHS 2007</span>
+        <span>"BLHS 2007"</span>
     </div>
   <div class="moon-light"></div>
 </div>
