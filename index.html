@@ -242,8 +242,8 @@ canvas {
 }
 .glow-eid {
     font-size: clamp(24px, 7vw, 42px);
-    color: fuchsia !important;
-    text-shadow:0 0 10px blue,0 0 30px lime,0 0 50px black;
+    color: dodgerblue !important;
+    text-shadow:0 0 10px red,0 0 30px black,0 0 50px black;
   animation: pulseGlow 3s ease-in-out infinite;
 }
 
@@ -251,6 +251,12 @@ canvas {
     font-size: 30px;
     color: lime !important;
     text-shadow:0 0 10px red,0 0 25px fuchsia,0 0 40px purple;
+    animation: pulseGlow 3s ease-in-out infinite;
+}
+  .glow-line {
+    font-size: 30px;
+    color: fuchsia !important;
+    text-shadow:0 0 10px blue,0 0 25px black,0 0 40px red;
     animation: pulseGlow 3s ease-in-out infinite;
 }
   .glow-quote {
@@ -379,6 +385,7 @@ const lines=[
 "🤲FROM SUHOOR TO EID PRAYER — EVERY EVENT MATTERED!💕",
 "ON BEHALF OF",
 "🏫BAYEZID LINE HIGH SCHOOL 2007🏫",
+  "🎉WISHING YOU AND YOUR LOVED ONES A HEARTWARMING EID🎉",
 "🌙EID MUBARAK🌙"
 ];
 
@@ -401,6 +408,8 @@ const wordEls=box.querySelectorAll(".word");
 
 if(text.includes("🌙EID MUBARAK🌙"))
 box.className="message glow-eid";
+  else if(text==="🎉WISHING YOU AND YOUR LOVED ONES A HEARTWARMING EID🎉")
+box.className="message1 glow-line";
 
 else if(text==="🏫BAYEZID LINE HIGH SCHOOL 2007🏫")
 box.className="message1 glow-blhs";
